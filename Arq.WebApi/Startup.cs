@@ -35,6 +35,7 @@ namespace Arq.WebApi
             services.AddScoped<GenericRepository<Student>>();
             services.AddScoped<GenericRepository<Subject>>();
 
+            services.AddScoped<CurriculumService>();
             services.AddScoped<SubjectsService>();
 
             services.AddMvc()
