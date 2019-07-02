@@ -1,9 +1,0 @@
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/bin/Debug/netstandard2.0/Arq.Domain.deps.json
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/bin/Debug/netstandard2.0/Arq.Domain.dll
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/bin/Debug/netstandard2.0/Arq.Domain.pdb
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/obj/Debug/netstandard2.0/Arq.Domain.csprojAssemblyReference.cache
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/obj/Debug/netstandard2.0/Arq.Domain.csproj.CoreCompileInputs.cache
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/obj/Debug/netstandard2.0/Arq.Domain.AssemblyInfoInputs.cache
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/obj/Debug/netstandard2.0/Arq.Domain.AssemblyInfo.cs
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/obj/Debug/netstandard2.0/Arq.Domain.dll
-/home/julio/Documents/ucs/projeto-arquitetura-software/arq/Arq.Domain/obj/Debug/netstandard2.0/Arq.Domain.pdb
