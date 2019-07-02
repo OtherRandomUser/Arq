@@ -35,6 +35,11 @@ namespace Arq.WebApi
             services.AddScoped<CurriculumService>();
             services.AddScoped<SubjectsService>();
 
+            services.AddCors(o => o.AddPolicy("AnyOrigin", b =>
+            {
+                b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -42,6 +47,7 @@ namespace Arq.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors("AnyOrigin");
             app.UseMvc();
         }
     }

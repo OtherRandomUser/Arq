@@ -28,7 +28,7 @@ namespace Arq.WebApi.Services
             if (curriculum == null)
                 return null;
 
-            return curriculum.Subjects.Select(s => (SubjectViewModel) s);
+            return curriculum.Subjects.OrderBy(s => s.TargetSemester).Select(s => (SubjectViewModel) s);
         }
     }
 }
