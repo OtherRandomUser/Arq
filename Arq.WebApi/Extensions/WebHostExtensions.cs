@@ -19,7 +19,7 @@ namespace Arq.WebApi.Extensions
                     var course = context.Courses.FirstOrDefault();
                     if (course == null)
                     {
-                        course = new Course("GRA004124", "Ciência da Computação");
+                        course = new Course("GRA004124", "Ciência da Computacao");
                         context.Courses.Add(course);
                         context.SaveChanges();
                     }
@@ -27,7 +27,7 @@ namespace Arq.WebApi.Extensions
                     var curriculum = context.Curriculums.FirstOrDefault();
                     if (curriculum == null)
                     {
-                        curriculum = new Curriculum(course, "F", "Aquele que não durou muito");
+                        curriculum = new Curriculum(course, "F", "Aquele que nao durou muito");
                         context.Curriculums.Add(curriculum);
                         context.SaveChanges();
                     }
@@ -35,13 +35,13 @@ namespace Arq.WebApi.Extensions
                     if (!context.Subjects.Any())
                     {
                         // first semester
-                        var lee = new Subject(curriculum, "UCS0101", "Leitura e Escrita na Formação Universitária", 6, 1);
-                        var et = new Subject(curriculum, "UCS0103", "Ética", 6, 1);
-                        var met = new Subject(curriculum, "INF00243", "Métodos de Estudo em Tecnologia", 6, 1);
+                        var lee = new Subject(curriculum, "UCS0101", "Leitura e Escrita na Formacao UniversitAria", 6, 1);
+                        var et = new Subject(curriculum, "UCS0103", "etica", 6, 1);
+                        var met = new Subject(curriculum, "INF00243", "Metodos de Estudo em Tecnologia", 6, 1);
                         var alg = new Subject(curriculum, "INF00244", "Algoritmos", 6, 1);
                         var sdi = new Subject(curriculum, "ELE0241", "Sistemas Digitais I", 6, 1);
-                        var prc = new Subject(curriculum, "MAT0356", "Pré-Cálculo", 6, 1);
-                        var md = new Subject(curriculum, "MAT0345", "Matemática Discreta", 6, 1);
+                        var prc = new Subject(curriculum, "MAT0356", "Pre-CAlculo", 6, 1);
+                        var md = new Subject(curriculum, "MAT0345", "MatemAtica Discreta", 6, 1);
                         context.Subjects.Add(lee);
                         context.Subjects.Add(et);
                         context.Subjects.Add(met);
@@ -67,13 +67,13 @@ namespace Arq.WebApi.Extensions
                         context.SaveChanges();
 
                         // second semester
-                        var pe = new Subject(curriculum, "INF0245", "Programação Estruturada", 6, 2);
-                        var lc = new Subject(curriculum, "INF0202", "Lógica para Computação", 6, 2);
+                        var pe = new Subject(curriculum, "INF0245", "Programacao Estruturada", 6, 2);
+                        var lc = new Subject(curriculum, "INF0202", "Logica para Computacao", 6, 2);
                         var aci = new Subject(curriculum, "SIS0560", "Arquitetura de Computadores I", 6, 2);
-                        var lsd = new Subject(curriculum, "AUT0217", "Laboratório de Sistemas Digitais",  6, 2);
-                        var ga = new Subject(curriculum, "MAT0358", "Geometria Analítica", 6, 2);
-                        var cc = new Subject(curriculum, "MAT0454", "Cálculo para Computação", 6, 2);
-                        var ptpe = new Subject(curriculum, "INF0246", "Projeto Temático: Programação Estruturada", 6, 2);
+                        var lsd = new Subject(curriculum, "AUT0217", "Laboratorio de Sistemas Digitais",  6, 2);
+                        var ga = new Subject(curriculum, "MAT0358", "Geometria Analitica", 6, 2);
+                        var cc = new Subject(curriculum, "MAT0454", "CAlculo para Computacao", 6, 2);
+                        var ptpe = new Subject(curriculum, "INF0246", "Projeto TemAtico: Programacao Estruturada", 6, 2);
                         context.Subjects.Add(pe);
                         context.Subjects.Add(lc);
                         context.Subjects.Add(aci);
@@ -112,12 +112,12 @@ namespace Arq.WebApi.Extensions
 
                         // third semester
                         var sd = new Subject(curriculum, "INF0208", "Estrutura de Dados", 6, 3);
-                        var poo = new Subject(curriculum, "INF0209", "Programação Orientada a Objetos", 6, 3);
+                        var poo = new Subject(curriculum, "INF0209", "Programacao Orientada a Objetos", 6, 3);
                         var bd = new Subject(curriculum, "INF0211", "Banco de Dados", 6, 3);
-                        var tc = new Subject(curriculum, "SIS0225", "Teoria da Computação", 6, 3);
+                        var tc = new Subject(curriculum, "SIS0225", "Teoria da Computacao", 6, 3);
                         var acii = new Subject(curriculum, "SIS0561", "Arquitetura de Computadores II", 6, 3);
-                        var al = new Subject(curriculum, "MAT0327", "Álgebra Linear", 6, 3);
-                        var ptpoo = new Subject(curriculum, "INF0247", "Projeto Temático: Programação Orientada a Objetos", 6, 3);
+                        var al = new Subject(curriculum, "MAT0327", "Algebra Linear", 6, 3);
+                        var ptpoo = new Subject(curriculum, "INF0247", "Projeto TemAtico: Programacao Orientada a Objetos", 6, 3);
                         context.Subjects.Add(sd);
                         context.Subjects.Add(poo);
                         context.Subjects.Add(bd);
