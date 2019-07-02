@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arq.Data;
-using Arq.Domain;
+using Arq.WebApi.Services;
 using Arq.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,36 +13,38 @@ namespace Arq.WebApi.Controllers
     [Route("api/[controller]")]
     public class CurriculumsController : ApiControllerBase
     {
-        private GenericRepository<Curriculum> _curriculumsRepository;
+        private CurriculumService _curriculumService;
 
-        public CurriculumsController(GenericRepository<Curriculum> curriculumsRepository)
+        public CurriculumsController(CurriculumService curriculumService)
         {
-            _curriculumsRepository = curriculumsRepository;
+            _curriculumService = curriculumService;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CurriculumViewModel>> GetCurriculum(Guid id)
-        {
-            var curriculum = (CurriculumViewModel) await _curriculumsRepository.GetByIdAsync(id, null);
-            
-            if (curriculum == null)
-                return NotFound();
+        public Task<ActionResult<CurriculumViewModel>> GetCurriculum(Guid id)
+            => ExecuteAsync<CurriculumViewModel>(async () =>
+            {
+                var curriculum = await _curriculumService.GetCurriculumAsync(id);
+                
+                if (curriculum == null)
+                    return NotFound();
 
-            return Ok(curriculum);
-        }
+                return Ok(curriculum);
+            });
 
         [HttpGet("{id}/subjects")]
-        public async Task<ActionResult<IEnumerable<SubjectViewModel>>> GetSubjects(Guid id)
-        {
-            var curriculum = await _curriculumsRepository.GetByIdAsync(id, c => c.Include(i => i.Subjects));
-            
-            if (curriculum == null)
-                return NotFound();
+        public Task<ActionResult<IEnumerable<SubjectViewModel>>> GetSubjects(Guid id)
+            => ExecuteAsync<IEnumerable<SubjectViewModel>>(async () =>
+            {
+                var subjects = await _curriculumService.GetSubjects(id);
+                
+                if (subjects == null)
+                    return NotFound();
 
-            if (!curriculum.Subjects.Any())
-                return NoContent();
+                if (!subjects.Any())
+                    return NoContent();
 
-            return Ok(curriculum.Subjects.Select(s => (SubjectViewModel) s));
-        }
+                return Ok(subjects);
+            });
     }
 }

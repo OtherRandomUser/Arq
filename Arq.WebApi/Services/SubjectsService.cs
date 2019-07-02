@@ -18,7 +18,10 @@ namespace Arq.WebApi.Services
             _subjectsRepository = subjectsRepository;
         }
 
-        public async Task<IEnumerable<RequirementViewModel>> GetRequirementsAsync(Guid id)
+        public async Task<SubjectViewModel> GetSubjectAsync(Guid id)
+            => (SubjectViewModel) await _subjectsRepository.GetByIdAsync(id, null);
+
+        public async Task<IEnumerable<RequirementViewModel>> GetDependenciesAsync(Guid id)
         {
             var subject = await _subjectsRepository.GetByIdAsync(id, i => i.Include(s => s.Prerequisites).Include(s => s.CoRequirements));
 

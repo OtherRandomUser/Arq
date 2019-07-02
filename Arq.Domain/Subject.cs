@@ -12,6 +12,7 @@ namespace Arq.Domain
         public string Code { get; private set; }
         public string Description { get; private set; }
         public int MinimumGrade { get; private set; }
+        public int TargetSemester { get; private set;}
 
         public IList<Prerequisite> Prerequisites { get; private set; }
         public IList<CoRequirement> CoRequirements { get; private set; }
@@ -22,7 +23,7 @@ namespace Arq.Domain
         {
         }
 
-        public Subject(Curriculum curriculum, string code, string description, int minimumGrade)
+        public Subject(Curriculum curriculum, string code, string description, int minimumGrade, int targetSemester)
         {
             Curriculum = curriculum ?? throw new ArgumentNullException(nameof(curriculum));
             CurriculumId = curriculum.Id;
@@ -30,6 +31,7 @@ namespace Arq.Domain
             Code = code;
             Description = description;
             MinimumGrade = minimumGrade;
+            TargetSemester = targetSemester;
 
             Prerequisites = new List<Prerequisite>();
             CoRequirements = new List<CoRequirement>();

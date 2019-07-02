@@ -10,6 +10,7 @@ namespace Arq.WebApi.ViewModels
         public string Code { get; set; }
         public string Description { get; set; }
         public int MinimumGrade { get; set; }
+        public int TargetSemester { get; set; }
 
         public static implicit operator SubjectViewModel(Subject subject)
             => subject == null ? null : new SubjectViewModel
@@ -18,7 +19,8 @@ namespace Arq.WebApi.ViewModels
                 Curriculum = subject.CurriculumId,
                 Code = subject.Code,
                 Description = subject.Description,
-                MinimumGrade = subject.MinimumGrade
+                MinimumGrade = subject.MinimumGrade,
+                TargetSemester = subject.TargetSemester
             };
     }
 }

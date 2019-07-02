@@ -14,17 +14,17 @@ namespace Arq.WebApi.Controllers
     [Route("api/[controller]")]
     public class SubjectsController : ApiControllerBase
     {
-        private GenericRepository<Subject> _subjectsRepository;
+        private SubjectsService _subjectService;
 
-        public SubjectsController(GenericRepository<Subject> subjectsRepository)
+        public SubjectsController(SubjectsService subjectService)
         {
-            _subjectsRepository = subjectsRepository;
+            _subjectService = subjectService;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<SubjectViewModel>> GetSubject(Guid id)
+        public async Task<ActionResult<SubjectViewModel>> GetSubjectAsync(Guid id)
         {
-            var subject = (SubjectViewModel) await _subjectsRepository.GetByIdAsync(id, null);
+            var subject = await _subjectService.GetSubjectAsync(id);
 
             if (subject == null)
                 return NotFound();
@@ -33,9 +33,9 @@ namespace Arq.WebApi.Controllers
         }
 
         [HttpGet("{id}/dependencies")]
-        public async Task<ActionResult<IEnumerable<RequirementViewModel>>> GetSubject(Guid id, [FromServices] SubjectsService subjectService)
+        public async Task<ActionResult<IEnumerable<RequirementViewModel>>> GetDependenciesAsync(Guid id)
         {
-            var requirements = await subjectService.GetRequirementsAsync(id);
+            var requirements = await _subjectService.GetDependenciesAsync(id);
 
             if (requirements == null)
                 return NotFound();
