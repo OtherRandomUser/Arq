@@ -26,11 +26,8 @@ namespace Arq.WebApi
             services.AddDbContext<ApplicationDbContext>(op => op
                 .UseMySql(_config.GetConnectionString("somedb")));
 
-            services.AddScoped<GenericRepository<CoRequirement>>();
             services.AddScoped<GenericRepository<Course>>();
             services.AddScoped<GenericRepository<Curriculum>>();
-            services.AddScoped<GenericRepository<Equivalence>>();
-            services.AddScoped<GenericRepository<Prerequisite>>();
             services.AddScoped<GenericRepository<Semester>>();
             services.AddScoped<GenericRepository<Student>>();
             services.AddScoped<GenericRepository<Subject>>();

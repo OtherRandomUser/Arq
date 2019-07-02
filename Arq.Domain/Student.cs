@@ -13,7 +13,7 @@ namespace Arq.Domain
         public Guid CourseId { get; private set; }
         public Course Course { get; private set; }
 
-        public IList<Semester> Semesters { get; private set; }
+        public virtual ICollection<Semester> Semesters { get; private set; }
 
         public Student()
         {

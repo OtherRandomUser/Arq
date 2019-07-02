@@ -20,6 +20,36 @@ namespace Arq.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CoRequirement>()
+                .HasOne(c => c.Requirement)
+                .WithMany(s => s.CoRequirements)
+                .HasForeignKey(c => c.RequirementId);
+
+            modelBuilder.Entity<CoRequirement>()
+                .HasOne(c => c.Subject)
+                .WithMany(s => s.CoRequiredBy)
+                .HasForeignKey(c => c.SubjectId);
+
+            modelBuilder.Entity<Equivalence>()
+                .HasOne(e => e.Equivalent)
+                .WithMany(s => s.Equivalences)
+                .HasForeignKey(e => e.EquivalentId);
+
+            modelBuilder.Entity<Equivalence>()
+                .HasOne(e => e.Subject)
+                .WithMany(s => s.EquivaleTo)
+                .HasForeignKey(c => c.SubjectId);
+
+            modelBuilder.Entity<Prerequisite>()
+                .HasOne(p => p.Requirement)
+                .WithMany(s => s.Prerequisites)
+                .HasForeignKey(p => p.RequirementId);
+
+            modelBuilder.Entity<Prerequisite>()
+                .HasOne(p => p.Subject)
+                .WithMany(s => s.RequiredBy)
+                .HasForeignKey(c => c.SubjectId);
+
             base.OnModelCreating(modelBuilder);
         }
     }

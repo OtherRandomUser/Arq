@@ -13,7 +13,7 @@ namespace Arq.Domain
         public string Description { get; private set; }
         public bool Active { get; private set; }
 
-        public IList<Subject> Subjects { get; private set; }
+        public virtual ICollection<Subject> Subjects { get; private set; }
 
         public Curriculum()
         {

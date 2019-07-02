@@ -14,10 +14,16 @@ namespace Arq.Domain
         public int MinimumGrade { get; private set; }
         public int TargetSemester { get; private set;}
 
-        public IList<Prerequisite> Prerequisites { get; private set; }
-        public IList<CoRequirement> CoRequirements { get; private set; }
-        public IList<Equivalence> Equivalences { get; private set; }
-        public IList<Semester> Semesters { get; private set; }
+        public virtual ICollection<Prerequisite> Prerequisites { get; private set; }
+        public virtual ICollection<Prerequisite> RequiredBy { get; private set; }
+
+        public virtual ICollection<CoRequirement> CoRequirements { get; private set; }
+        public virtual ICollection<CoRequirement> CoRequiredBy { get; private set; }
+
+        public virtual ICollection<Equivalence> Equivalences { get; private set; }
+        public virtual ICollection<Equivalence> EquivaleTo { get; private set; }
+
+        public virtual ICollection<Semester> Semesters { get; private set; }
 
         public Subject()
         {

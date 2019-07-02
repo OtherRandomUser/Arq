@@ -9,8 +9,8 @@ namespace Arq.Domain
         public string Code { get; private set; }
         public string Description { get; private set; }
 
-        public IList<Curriculum> Curriculums { get; private set; }
-        public IList<Student> Students { get; private set; }
+        public virtual ICollection<Curriculum> Curriculums { get; private set; }
+        public virtual ICollection<Student> Students { get; private set; }
 
         public Course()
         {
