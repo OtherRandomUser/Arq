@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Arq.WebApi.Services;
 using Arq.WebApi.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,7 @@ namespace Arq.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public Task<ActionResult<CurriculumViewModel>> GetCurriculum(Guid id)
             => ExecuteAsync<CurriculumViewModel>(async () =>
             {
@@ -33,6 +35,7 @@ namespace Arq.WebApi.Controllers
             });
 
         [HttpGet("{id}/subjects")]
+        [Authorize]
         public Task<ActionResult<IEnumerable<SubjectViewModel>>> GetSubjects(Guid id)
             => ExecuteAsync<IEnumerable<SubjectViewModel>>(async () =>
             {

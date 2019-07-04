@@ -20,6 +20,23 @@ namespace Arq.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Student>()
+                .HasIndex(s => s.Username)
+                .IsUnique();
+
+            modelBuilder.Entity<Student>()
+                .HasIndex(s => s.RegistrationNumber)
+                .IsUnique();
+
+            modelBuilder.Entity<Course>()
+                .HasIndex(c => c.Code);
+
+            modelBuilder.Entity<Curriculum>()
+                .HasIndex(c => c.Code);
+
+            modelBuilder.Entity<Subject>()
+                .HasIndex(s => s.Code);
+
             modelBuilder.Entity<CoRequirement>()
                 .HasOne(c => c.Requirement)
                 .WithMany(s => s.CoRequirements)

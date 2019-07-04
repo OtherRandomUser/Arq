@@ -6,6 +6,7 @@ using Arq.Data;
 using Arq.Domain;
 using Arq.WebApi.Services;
 using Arq.WebApi.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Arq.WebApi.Controllers
@@ -22,6 +23,7 @@ namespace Arq.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<SubjectViewModel>> GetSubjectAsync(Guid id)
         {
             var subject = await _subjectService.GetSubjectAsync(id);
@@ -33,6 +35,7 @@ namespace Arq.WebApi.Controllers
         }
 
         [HttpGet("{id}/dependencies")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<RequirementViewModel>>> GetDependenciesAsync(Guid id)
         {
             var requirements = await _subjectService.GetDependenciesAsync(id);

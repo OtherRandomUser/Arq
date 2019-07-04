@@ -7,6 +7,7 @@ namespace Arq.Domain
     public class Student : Entity
     {
         public string Name { get; private set; }
+        public string Username { get; private set; }
         public string Password { get; private set; }
         public string RegistrationNumber { get; private set; }
 
@@ -19,9 +20,22 @@ namespace Arq.Domain
         {
         }
 
-        public Student(string name, string password, string registrationNumber, Course course)
+        public Student(string name, string username, string password, string registrationNumber, Course course)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentNullException(nameof(username));
+
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentNullException(nameof(password));
+
+            if (string.IsNullOrWhiteSpace(registrationNumber))
+                throw new ArgumentNullException(nameof(registrationNumber));
+
             Name = name;
+            Username = username;
             Password = password;
             RegistrationNumber = registrationNumber;
 
@@ -29,6 +43,11 @@ namespace Arq.Domain
             CourseId = course.Id;
 
             Semesters = new List<Semester>();
+        }
+
+        public bool ValidatePassword(string password)
+        {
+            return Password == password;
         }
     }
 }
