@@ -24,6 +24,14 @@ namespace Arq.WebApi.Extensions
                         context.SaveChanges();
                     }
 
+                    var student = context.Students.FirstOrDefault();
+                    if (student == null)
+                    {
+                        student = new Student("Julio", "julio", "julio", "Q1W2E3R4T5Y6U7I", course);
+                        context.Students.Add(student);
+                        context.SaveChanges();
+                    }
+
                     var curriculum = context.Curriculums.FirstOrDefault();
                     if (curriculum == null)
                     {
@@ -87,8 +95,11 @@ namespace Arq.WebApi.Extensions
                         context.Subjects.Update(pe);
                         context.SaveChanges();
 
-                        aci.Prerequisites.Add(new Prerequisite(aci, sdi));
-                        context.Subjects.Update(aci);
+                        // aci.Prerequisites.Add(new Prerequisite(aci, sdi));
+                        // context.Subjects.Update(aci);
+                        // context.SaveChanges();
+
+                        context.Prerequisites.Add(new Prerequisite(aci, sdi));
                         context.SaveChanges();
 
                         lsd.Prerequisites.Add(new Prerequisite(lsd, sdi));

@@ -59,12 +59,12 @@ namespace Arq.Data
 
             modelBuilder.Entity<Prerequisite>()
                 .HasOne(p => p.Requirement)
-                .WithMany(s => s.Prerequisites)
+                .WithMany(s => s.RequiredBy)
                 .HasForeignKey(p => p.RequirementId);
 
             modelBuilder.Entity<Prerequisite>()
                 .HasOne(p => p.Subject)
-                .WithMany(s => s.RequiredBy)
+                .WithMany(s => s.Prerequisites)
                 .HasForeignKey(c => c.SubjectId);
 
             base.OnModelCreating(modelBuilder);

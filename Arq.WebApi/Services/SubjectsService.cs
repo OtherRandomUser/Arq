@@ -23,13 +23,19 @@ namespace Arq.WebApi.Services
 
         public async Task<IEnumerable<RequirementViewModel>> GetDependenciesAsync(Guid id)
         {
-            var subject = await _subjectsRepository.GetByIdAsync(id, i => i.Include(s => s.Prerequisites).Include(s => s.CoRequirements));
+            // var subject = await _subjectsRepository.GetByIdAsync(id, i => i.Include(s => s.Prerequisites).Include(s => s.CoRequirements));
+            var subject = _subjectsRepository.GetQueryable()
+                .Include(s => s.Prerequisites)
+                    .ThenInclude(p => p.Requirement)
+                .Include(s => s.CoRequirements)
+                    .ThenInclude(c => c.Requirement)
+                .FirstOrDefault(e => e.Id == id);
 
             if (subject == null)
                 return null;
 
             return subject.Prerequisites.Select(s => new RequirementViewModel(s.Requirement, RequirementType.PreRequisite))
-                .Concat(subject.CoRequirements.Select(s => new RequirementViewModel(s.Requirement, RequirementType.PreRequisite)));
+                .Concat(subject.CoRequirements.Select(s => new RequirementViewModel(s.Requirement, RequirementType.CoRequirement)));
         }
     }
 }

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Arq.Data;
 using Arq.Domain;
 using Arq.WebApi.Security;
@@ -86,37 +90,37 @@ namespace Arq.WebApi
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-        //     services.AddSwaggerGen(c =>
-        //     {
-        //         c.SwaggerDoc("v1", new Info { Title = "Soapstone-Backend", Version = "v1" });
-        //         c.AddSecurityDefinition("Bearer", new ApiKeyScheme
-        //         {
-        //             In = "header",
-        //             Description = "Please enter into field the word 'Bearer' following by space and JWT", 
-        //             Name = "Authorization",
-        //             Type = "apiKey"
-        //         });
-        //         c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
-        //         {
-        //             { "Bearer", Enumerable.Empty<string>() },
-        //         });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Soapstone-Backend", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    In = "header",
+                    Description = "Please enter into field the word 'Bearer' following by space and JWT", 
+                    Name = "Authorization",
+                    Type = "apiKey"
+                });
+                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                {
+                    { "Bearer", Enumerable.Empty<string>() },
+                });
 
-        //         var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-        //         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-        //         c.IncludeXmlComments(xmlPath);
-        //     });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // app.UseSwagger();
+            app.UseSwagger();
 
-            // app.UseSwaggerUI(c =>
-            // {
-            //     c.SwaggerEndpoint("swagger/v1/swagger.json", "Soapstone Backend v1");
-            //     c.RoutePrefix = string.Empty;
-            // });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "Soapstone Backend v1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseAuthentication();
             app.UseCors("AnyOrigin");

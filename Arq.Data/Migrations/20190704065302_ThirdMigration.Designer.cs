@@ -3,14 +3,16 @@ using System;
 using Arq.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Arq.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190704065302_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,12 +230,12 @@ namespace Arq.Data.Migrations
             modelBuilder.Entity("Arq.Domain.Prerequisite", b =>
                 {
                     b.HasOne("Arq.Domain.Subject", "Requirement")
-                        .WithMany("RequiredBy")
+                        .WithMany("Prerequisites")
                         .HasForeignKey("RequirementId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Arq.Domain.Subject", "Subject")
-                        .WithMany("Prerequisites")
+                        .WithMany("RequiredBy")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

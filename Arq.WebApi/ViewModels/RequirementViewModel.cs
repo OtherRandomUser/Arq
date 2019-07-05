@@ -10,7 +10,7 @@ namespace Arq.WebApi.ViewModels
 
     public class RequirementViewModel : SubjectViewModel
     {
-        public RequirementType Type { get; set; }
+        public string Type { get; set; }
 
         public RequirementViewModel(Subject subject, RequirementType type)
         {
@@ -22,7 +22,8 @@ namespace Arq.WebApi.ViewModels
             Code = subject.Code;
             Description = subject.Description;
             MinimumGrade = subject.MinimumGrade;
-            Type = type;
+            TargetSemester = subject.TargetSemester;
+            Type = type.ToString();
         }
     }
 }
